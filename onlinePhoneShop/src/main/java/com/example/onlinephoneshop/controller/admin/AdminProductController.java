@@ -44,8 +44,12 @@ public class AdminProductController {
 
     @DeleteMapping("phones/{phoneId}")
     void deletePhoneById(@PathVariable String phoneId) throws Throwable {
-        Optional<Phone> phoneOtp = phoneService.getPhoneById(phoneId);
-        Phone phone = phoneOtp.get();
+        Phone phone=null;
+        Optional<Object> phoneOtp = phoneService.getProductById(phoneId);
+        if(phoneOtp.get() instanceof Phone){
+            phone = (Phone) phoneOtp.get();
+        }
+        else return;
 
         if(phone.getOrderDetails().size()==0 && phone.getRatings().size()==0)
             phoneService.deletePhoneById(phoneId);

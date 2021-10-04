@@ -83,13 +83,8 @@ public class PublicController {
 		return phoneService.getAllProducts();
 	}
 
-	@GetMapping("phones/{phoneId}")
-	public Phone getPhoneById(@PathVariable String phoneId) throws Throwable {
-		return phoneService.getPhoneById(phoneId).get();
-	}
-
-	@GetMapping("accessories/{accessoryId}")
-	public Accessory getAccessoryById(@PathVariable String accessoryId) throws Throwable {
-		return accessoryService.getAccessoryById(accessoryId).get();
+	@GetMapping("products/{productId}")
+	public Object getProductById(@PathVariable String productId) throws Throwable {
+		return phoneService.getProductById(productId).get();
 	}
 }

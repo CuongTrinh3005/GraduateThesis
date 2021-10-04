@@ -48,7 +48,7 @@ public class PhoneServiceImpl implements PhoneService {
 
     @Override
     public Phone updatePhone(PhoneDTO phoneDTO, String id) throws Throwable {
-        Phone existingPhone = getPhoneById(id).get();
+        Phone existingPhone = (Phone) getProductById(id).get();
         Phone updatePhone = convertDTOToEntity(phoneDTO);
 
         existingPhone.setProductName(updatePhone.getProductName());
@@ -76,10 +76,18 @@ public class PhoneServiceImpl implements PhoneService {
     }
 
     @Override
-    public Optional<Phone> getPhoneById(String id) throws Throwable {
-        Phone phone = (Phone) phoneRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(CustomMessages.PRODUCT_NOT_FOUND.getDescription()));
-        return Optional.of(phone);
+    public Optional<Object> getProductById(String id) throws Throwable {
+        Object object =  phoneRepository.findById(id).get();
+        Phone phone = null;
+        Accessory accessory = null;
+        if(object instanceof Phone){
+            phone = (Phone) object;
+            return Optional.of(phone);
+        }
+        else{
+            accessory = (Accessory) object;
+            return Optional.of(accessory);
+        }
     }
 
     @Override

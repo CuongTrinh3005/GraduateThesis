@@ -5,6 +5,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +27,7 @@ public interface ProductRepository<T extends Product> extends JpaRepository<T, S
 
     List<T> findAll();
 //    Optional<T> findById(String id);
+//    Optional<T> findById(ID id);
 
 
     //    Iterable<T> findAll(Sort sort);

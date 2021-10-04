@@ -24,10 +24,10 @@ import java.util.Collection;
 public class Order extends AuditModel {
     @Id
     @Column
-    @GeneratedValue(generator = "phoneid-generator")
-    @GenericGenerator(name = "phoneid-generator",
+    @GeneratedValue(generator = "userid-generator")
+    @GenericGenerator(name = "userid-generator",
             parameters = @Parameter(name = "prefix", value = "OD"),
-            strategy = "com.example.onlinephoneshop.generators.PhoneIdGenerator")
+            strategy = "com.example.onlinephoneshop.generators.UserIdGenerator")
     private String orderId;
 
     @Column

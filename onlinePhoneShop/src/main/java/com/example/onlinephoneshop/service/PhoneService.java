@@ -15,5 +15,5 @@ public interface PhoneService {
     Phone convertDTOToEntity(PhoneDTO phoneDTO);
     PhoneDTO convertEntityToDTO(Phone phone);
     Phone updatePhone(PhoneDTO phoneDTO, String id) throws Throwable;
-    Optional<Phone> getPhoneById(String id) throws Throwable;
+    Optional<Object> getProductById(String id) throws Throwable;
 }
