@@ -6,6 +6,7 @@ import com.example.onlinephoneshop.entity.Accessory;
 import com.example.onlinephoneshop.entity.Phone;
 import com.example.onlinephoneshop.enums.CustomMessages;
 import com.example.onlinephoneshop.exception.CustomException;
+import com.example.onlinephoneshop.payload.request.AccessoryListId;
 import com.example.onlinephoneshop.service.AccessoryService;
 import com.example.onlinephoneshop.service.PhoneService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -91,5 +94,10 @@ public class AdminProductController {
     @Transactional
     public ResponseEntity<Accessory> updateAccessory(@Valid @RequestBody AccessoryDTO accessoryDTO, @PathVariable String accessoryId) throws Throwable {
         return new ResponseEntity<Accessory>(accessoryService.updateAccessory(accessoryDTO, accessoryId), HttpStatus.OK);
+    }
+
+    @PutMapping("phones/{id}/add-accessories")
+    public ResponseEntity<Phone> addAccessoriesForPhone(@PathVariable String id, @Valid @RequestBody AccessoryListId listAccessoryIds) throws Throwable {
+        return new ResponseEntity<Phone>(phoneService.addAccessories(listAccessoryIds.getAccessoriesIdList(), id), HttpStatus.OK);
     }
 }

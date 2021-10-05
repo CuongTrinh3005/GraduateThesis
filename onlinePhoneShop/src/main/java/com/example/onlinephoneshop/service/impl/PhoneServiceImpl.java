@@ -14,8 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.swing.text.html.Option;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -118,5 +120,18 @@ public class PhoneServiceImpl implements PhoneService {
     @Override
     public void deletePhoneById(String id) {
         phoneRepository.deleteById(id);
+    }
+
+    @Override
+    public Phone addAccessories(Set<String> accessoryList, String phoneId) throws Throwable {
+        Phone existingPhone = (Phone) getProductById(phoneId).get();
+        Set<Accessory> accessories = new HashSet<>();
+        for(String id: accessoryList){
+            Accessory accessory = (Accessory) phoneRepository.findById(id).get();
+            accessories.add(accessory);
+        }
+
+        existingPhone.setAccessories(accessories);
+        return (Phone) phoneRepository.save(existingPhone);
     }
 }
