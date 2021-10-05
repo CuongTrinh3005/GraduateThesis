@@ -8,12 +8,15 @@ import com.example.onlinephoneshop.dto.OrderDetailsDTO;
 import com.example.onlinephoneshop.entity.OrderDetails;
 import com.example.onlinephoneshop.entity.OrderDetails.OrderDetailID;
 import com.example.onlinephoneshop.entity.Product;
+import com.example.onlinephoneshop.exception.CustomException;
 import com.example.onlinephoneshop.exception.ResourceNotFoundException;
 import com.example.onlinephoneshop.repository.OrderDetailsRepository;
 import com.example.onlinephoneshop.repository.PhoneRepository;
 import com.example.onlinephoneshop.service.OrderDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class OrderDetailServiceImpl implements OrderDetailService {
@@ -36,7 +39,10 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 	}
 
 	@Override
+	@Transactional(isolation = Isolation.SERIALIZABLE, rollbackFor = CustomException.class)
 	public OrderDetails saveOrderDetail(OrderDetails detail) {
+		if(detail.getDiscount() == null)
+			detail.setDiscount(Float.valueOf(0));
 		return orderDetailRepository.save(detail);
 	}
 

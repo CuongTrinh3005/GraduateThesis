@@ -33,6 +33,9 @@ public class PublicController {
 	@Autowired
 	AccessoryService accessoryService;
 
+	@Autowired
+	PaymentService paymentService;
+
 	@GetMapping("categories")
 	public List<Category> getAllCategories(){
 		return categoryService.getAllCategories();
@@ -86,5 +89,15 @@ public class PublicController {
 	@GetMapping("products/{productId}")
 	public Object getProductById(@PathVariable String productId) throws Throwable {
 		return phoneService.getProductById(productId).get();
+	}
+
+	@GetMapping("payments")
+	public List<Payment> getAllPayments(){
+		return paymentService.getAllPayments();
+	}
+
+	@GetMapping("payments/{id}")
+	public Payment getAllPayments(@PathVariable Integer id){
+		return paymentService.getById(id);
 	}
 }

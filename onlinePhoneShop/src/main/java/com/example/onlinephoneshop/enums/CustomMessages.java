@@ -14,7 +14,13 @@ public enum CustomMessages {
     MANUFACTURER_NAME_EXISTED("This manufacturer name has already been existed!"),
     NOT_DELETE_MANUFACTURER("Can not delete manufacturer has products"),
     PRODUCT_NOT_FOUND("Product not be found!"),
-    NOT_DELETE_PRODUCT("Can not delete a product having order details and ratings!");
+    NOT_DELETE_PRODUCT("Can not delete a product having order details and ratings!"),
+    NOT_ENOUGH_QUALITY_TO_SELL("The quantity of product id %s is not enough to be sold!"),
+    NOT_AVAILABLE_TO_SELL("The product id %s is not available to be sold!"),
+    ORDER_FAILED("Order products is not complete!"),
+    ORDER_SUCCESS("Order successfully!!!"),
+    PAYMENT_NOT_FOUND("Payment not found!"),
+    DATA_INVALID_FORMAT("Data format of %s is invalid!");
 
     private final String description;
 

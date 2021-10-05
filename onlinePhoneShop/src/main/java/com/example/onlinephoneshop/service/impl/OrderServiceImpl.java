@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.onlinephoneshop.dto.OrderDTO;
-import com.example.onlinephoneshop.entity.Order;
-import com.example.onlinephoneshop.entity.OrderDetails;
-import com.example.onlinephoneshop.entity.Product;
+import com.example.onlinephoneshop.entity.*;
 import com.example.onlinephoneshop.enums.OrderStatus;
 import com.example.onlinephoneshop.exception.ResourceNotFoundException;
+import com.example.onlinephoneshop.repository.AccessoryRepository;
 import com.example.onlinephoneshop.repository.OrderRepository;
+import com.example.onlinephoneshop.repository.PhoneRepository;
 import com.example.onlinephoneshop.repository.ProductRepository;
 import com.example.onlinephoneshop.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +23,11 @@ public class OrderServiceImpl implements OrderService {
 	@Autowired
 	OrderRepository orderRepository;
 	
-//	@Autowired
-//	ProductRepository productRepository;
+	@Autowired
+	PhoneRepository phoneRepository;
+
+	@Autowired
+	AccessoryRepository accessoryRepository;
 
 	@Override
 	public List<Order> findOrderByUserId(String userId) {
@@ -64,29 +67,40 @@ public class OrderServiceImpl implements OrderService {
 		return orderRepository.findAllByOrderByCreatedDateDesc();
 	}
 
-//	@Override
+	@Override
 	public String composeConfirmOrder(List<OrderDetails> details, Date date, float totalCost) {
 		String body = "You have an order on " + date.toString() + " with details: \r\n";
 		body += "\r\n";
 		body += "Mã đơn đặt hàng: " + details.get(0).getOrderDetailID().getOrderId() + "\r\n";
 		body += "\r\n";
-//		for (OrderDetails detail : details) {
-//			body += "Mã sản phẩm: " + detail.getOrderDetailID().getProductId() + "\r\n";
-//			body += "\r\n";
-//			Product product = (Product) productRepository.getById(detail.getOrderDetailID().getProductId());
-//			body += "Tên sản phẩm: " + product.getProductName() + "\r\n";
-//			body += "\r\n";
-//			body += "Số lượng: " + detail.getQuantityOrder() + "\r\n";
-//			body += "\r\n";
-//			body += "Đơn giá: " + detail.getUnitPrice() + " VNĐ \r\n";
-//			body += "\r\n";
-//			if(detail.getDiscount() > 0){
-//				body += "Giảm giá: " + detail.getDiscount()*100 + "%" + "\r\n";
-//				body += "\r\n";
-//			}
-//			body += "----------------------------------------------------------- \r\n";
-//			body += "\r\n";
-//		}
+		Phone phone = null;
+		Accessory accessory = null;
+		String productName = "";
+		for (OrderDetails detail : details) {
+			body += "Mã sản phẩm: " + detail.getOrderDetailID().getProductId() + "\r\n";
+			body += "\r\n";
+			Object product = phoneRepository.getById(detail.getOrderDetailID().getProductId());
+			if(product instanceof Phone){
+				phone = (Phone) product;
+				productName = phone.getProductName();
+			}
+			else{
+				accessory = (Accessory) product;
+				productName = accessory.getProductName();
+			}
+			body += "Tên sản phẩm: " + productName + "\r\n";
+			body += "\r\n";
+			body += "Số lượng: " + detail.getQuantityOrder() + "\r\n";
+			body += "\r\n";
+			body += "Đơn giá: " + detail.getUnitPrice() + " VNĐ \r\n";
+			body += "\r\n";
+			if(detail.getDiscount() > 0){
+				body += "Giảm giá: " + detail.getDiscount()*100 + "%" + "\r\n";
+				body += "\r\n";
+			}
+			body += "----------------------------------------------------------- \r\n";
+			body += "\r\n";
+		}
 		body += "Tổng thành tiền: " + totalCost + " VNĐ \r\n";
 		body += "\r\n";
 		body += "Hân hạnh phục vụ quý khách !";
