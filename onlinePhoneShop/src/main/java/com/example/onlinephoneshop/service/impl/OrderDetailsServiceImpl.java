@@ -3,6 +3,7 @@ package com.example.onlinephoneshop.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import com.example.onlinephoneshop.dto.OrderDetailsDTO;
 import com.example.onlinephoneshop.entity.OrderDetails;
@@ -12,14 +13,14 @@ import com.example.onlinephoneshop.exception.CustomException;
 import com.example.onlinephoneshop.exception.ResourceNotFoundException;
 import com.example.onlinephoneshop.repository.OrderDetailsRepository;
 import com.example.onlinephoneshop.repository.PhoneRepository;
-import com.example.onlinephoneshop.service.OrderDetailService;
+import com.example.onlinephoneshop.service.OrderDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class OrderDetailServiceImpl implements OrderDetailService {
+public class OrderDetailsServiceImpl implements OrderDetailsService {
 	@Autowired
 	OrderDetailsRepository orderDetailRepository;
 	
@@ -47,8 +48,8 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 	}
 
 	@Override
-	public List<OrderDetails> getAllOrderDetailByOrderId(String orderId) {
-		return orderDetailRepository.findByOrderDetailIDOrderId(orderId);
+	public List<OrderDetailsDTO> getAllOrderDetailByOrderId(String orderId) {
+		return convertToDTO(orderDetailRepository.findByOrderDetailIDOrderId(orderId)) ;
 	}
 
 	@Override

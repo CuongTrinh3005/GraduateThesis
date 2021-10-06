@@ -19,4 +19,11 @@ public interface PhoneService {
     Phone updatePhone(PhoneDTO phoneDTO, String id) throws Throwable;
     Optional<Object> getProductById(String id) throws Throwable;
     Phone addAccessories(Set<String> accessoryList, String phoneId) throws Throwable;
+    List<Object> getProductByName(String productName);
+    List<Object> getProductByNameIgnoreCaseContaining(String productName);
+    List<Object> getProductByCategoryId(String categoryId);
+    List<Object> getTop10MostView();
+    List<Object> getTop10MostDiscount();
+    List<Object> getTop10BestSeller(int offset, int limit);
+    List<Object> getTop10Newest();
 }

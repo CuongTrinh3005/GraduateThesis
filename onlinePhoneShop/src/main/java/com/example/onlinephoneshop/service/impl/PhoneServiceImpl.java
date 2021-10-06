@@ -8,17 +8,15 @@ import com.example.onlinephoneshop.repository.BrandRepository;
 import com.example.onlinephoneshop.repository.CategoryRepository;
 import com.example.onlinephoneshop.repository.ManufacturerRepository;
 import com.example.onlinephoneshop.repository.PhoneRepository;
+import com.example.onlinephoneshop.service.AccessoryService;
 import com.example.onlinephoneshop.service.PhoneService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
+import org.springframework.data.domain.PageRequest;
+
+import java.util.*;
 
 @Service
 public class PhoneServiceImpl implements PhoneService {
@@ -36,6 +34,9 @@ public class PhoneServiceImpl implements PhoneService {
 
     @Autowired
     ManufacturerRepository manufacturerRepository;
+
+    @Autowired
+    AccessoryService accessoryService;
 
     @Override
     public List<Phone> getAllProducts() {
@@ -133,5 +134,42 @@ public class PhoneServiceImpl implements PhoneService {
 
         existingPhone.setAccessories(accessories);
         return (Phone) phoneRepository.save(existingPhone);
+    }
+
+    @Override
+    public List<Object> getProductByName(String productName) {
+        return phoneRepository.findByProductName(productName);
+    }
+
+    @Override
+    public List<Object> getProductByNameIgnoreCaseContaining(String productName) {
+        return phoneRepository.findByProductNameIgnoreCaseContaining(productName);
+    }
+
+    @Override
+    public List<Object> getProductByCategoryId(String categoryId) {
+        return phoneRepository.findProductByCategory_CategoryId(categoryId);
+    }
+
+    // Statistics
+
+    @Override
+    public List<Object> getTop10MostView() {
+        return phoneRepository.findTop10ByOrderByViewCountDesc();
+    }
+
+    @Override
+    public List<Object> getTop10MostDiscount() {
+        return phoneRepository.findTop10ByOrderByDiscountDesc();
+    }
+
+    @Override
+    public List<Object> getTop10BestSeller(int offset, int limit) {
+        return phoneRepository.findTopBestSellerProduct(PageRequest.of(offset, limit));
+    }
+
+    @Override
+    public List<Object> getTop10Newest() {
+        return phoneRepository.findTop10ByOrderByCreatedDateDesc();
     }
 }

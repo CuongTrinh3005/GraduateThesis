@@ -7,6 +7,8 @@ import com.example.onlinephoneshop.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -35,6 +37,11 @@ public class PublicController {
 
 	@Autowired
 	PaymentService paymentService;
+
+	@GetMapping("reset-password")
+	public Boolean resetPassword(@RequestParam String username){
+		return userService.resetPassword(username.trim());
+	}
 
 	@GetMapping("categories")
 	public List<Category> getAllCategories(){
@@ -88,7 +95,65 @@ public class PublicController {
 
 	@GetMapping("products/{productId}")
 	public Object getProductById(@PathVariable String productId) throws Throwable {
-		return phoneService.getProductById(productId).get();
+		Object object = phoneService.getProductById(productId).get();
+		if(object instanceof Phone)
+			return phoneService.convertEntityToDTO((Phone) object);
+		else return accessoryService.convertEntityToDTO((Accessory) object);
+	}
+
+	public List<Object> convertToListDTO(List<Object> objectList){
+		List<Object> dtoList = new ArrayList<>();
+		for (Object object: objectList) {
+			if(object instanceof Phone)
+				object = phoneService.convertEntityToDTO((Phone) object);
+			else
+				object = accessoryService.convertEntityToDTO((Accessory) object);
+
+			dtoList.add(object);
+		}
+		return dtoList;
+	}
+
+	@GetMapping("products/search")
+	public List<Object> getProductByName(@RequestParam String productName) throws Throwable {
+		List<Object> objectList = phoneService.getProductByName(productName);
+		return convertToListDTO(objectList);
+	}
+
+	@GetMapping("products/embedded-search")
+	public List<Object> getProductByNameIgnoreCaseContaining(@RequestParam String productName) throws Throwable {
+		List<Object> objectList = phoneService.getProductByNameIgnoreCaseContaining(productName);
+		return convertToListDTO(objectList);
+	}
+
+	@GetMapping("products/category/{id}")
+	public List<Object> getProductByCategoryId(@PathVariable String id) throws Throwable {
+		List<Object> objectList = phoneService.getProductByCategoryId(id);
+		return convertToListDTO(objectList);
+	}
+
+	@GetMapping("products/top-view")
+	public List<Object> getProductTopView() throws Throwable {
+		List<Object> objectList = phoneService.getTop10MostView();
+		return convertToListDTO(objectList);
+	}
+
+	@GetMapping("products/top-discount")
+	public List<Object> getProductTopDiscount() throws Throwable {
+		List<Object> objectList = phoneService.getTop10MostDiscount();
+		return convertToListDTO(objectList);
+	}
+
+	@GetMapping("products/top-newest")
+	public List<Object> getProductNewest() throws Throwable {
+		List<Object> objectList = phoneService.getTop10Newest();
+		return convertToListDTO(objectList);
+	}
+
+	@GetMapping("products/best-seller/limit/{num}")
+	public List<Object> getProductBestSeller(@PathVariable Integer num) throws Throwable {
+		List<Object> objectList = phoneService.getTop10BestSeller(0, num);
+		return convertToListDTO(objectList);
 	}
 
 	@GetMapping("payments")

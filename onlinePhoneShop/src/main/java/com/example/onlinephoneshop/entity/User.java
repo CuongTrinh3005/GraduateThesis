@@ -63,7 +63,8 @@ public class User extends AuditModel{
     @Length(max = 255)
     private String address;
 
-    @Column
+    @Lob
+    @Column(columnDefinition = "BLOB")
     private byte[] image;
 
     @Column
@@ -72,6 +73,14 @@ public class User extends AuditModel{
     @Column
     @Past
     private Date birthday;
+
+    @OneToMany(mappedBy="user", fetch=FetchType.EAGER)
+    @JsonIgnore
+    private Set<Order> orders;
+
+    @OneToMany(mappedBy="user", fetch=FetchType.EAGER)
+    @JsonIgnore
+    private Set<Rating> ratings;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",

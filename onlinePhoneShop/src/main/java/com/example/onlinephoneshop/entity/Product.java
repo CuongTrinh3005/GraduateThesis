@@ -1,6 +1,5 @@
 package com.example.onlinephoneshop.entity;
 
-import com.example.onlinephoneshop.dto.PhoneDTO;
 import com.example.onlinephoneshop.model.AuditModel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -51,7 +50,8 @@ public class Product extends AuditModel {
     @DecimalMax(value = "0.7", message = "Discount must be not over 70%")
     private Float discount;
 
-    @Column
+    @Lob
+    @Column(columnDefinition = "BLOB")
     private byte[] image;
 
     @Column(columnDefinition = "ntext")

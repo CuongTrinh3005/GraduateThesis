@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
@@ -21,7 +20,6 @@ import com.example.onlinephoneshop.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -45,7 +43,7 @@ public class OrderController {
 	UserService userService;
 
 	@Autowired
-	OrderDetailService orderDetailService;
+	OrderDetailsService orderDetailService;
 	
 	@Autowired
 	PhoneService phoneService;

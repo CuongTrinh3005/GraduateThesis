@@ -20,7 +20,13 @@ public enum CustomMessages {
     ORDER_FAILED("Order products is not complete!"),
     ORDER_SUCCESS("Order successfully!!!"),
     PAYMENT_NOT_FOUND("Payment not found!"),
-    DATA_INVALID_FORMAT("Data format of %s is invalid!");
+    DATA_INVALID_FORMAT("Data format of %s is invalid!"),
+    USER_NOT_FOUND("User not found!"),
+    INCORRECT_CURRENT_PASSWORD("Current password is not correct!"),
+    NEW_PASSWORD_MUST_DIFFERENT_CURRENT_PASSWORD("New password must be different with current password!"),
+    NOT_DELETE_USER("Not allow to delete user having orders or ratings"),
+    CHANGE_PASSWORD_SUCCESS("Change password successfully!"),
+    CHANGE_PASSWORD_FAILED("Change password failed!");
 
     private final String description;
 
