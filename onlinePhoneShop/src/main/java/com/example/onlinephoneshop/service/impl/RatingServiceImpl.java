@@ -29,7 +29,7 @@ public class RatingServiceImpl implements RatingService {
 	}
 
 	@Override
-	public Optional<Rating> getByRatingId(Rating.RatingId id) {
+	public Optional<Rating> getByRatingId(RatingId id) {
 		Rating rating = ratingRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("rating id " + id + " not found"));
 		return Optional.of(rating);

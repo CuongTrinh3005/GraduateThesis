@@ -38,6 +38,9 @@ public class PublicController {
 	@Autowired
 	PaymentService paymentService;
 
+	@Autowired
+	RatingService ratingService;
+
 	@GetMapping("reset-password")
 	public Boolean resetPassword(@RequestParam String username){
 		return userService.resetPassword(username.trim());
@@ -99,6 +102,11 @@ public class PublicController {
 		if(object instanceof Phone)
 			return phoneService.convertEntityToDTO((Phone) object);
 		else return accessoryService.convertEntityToDTO((Accessory) object);
+	}
+
+	@GetMapping("ratings/products/{id}")
+	public List<Rating> getProductRatings(@PathVariable String id){
+		return ratingService.getAllRatingByProductId(id);
 	}
 
 	public List<Object> convertToListDTO(List<Object> objectList){

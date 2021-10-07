@@ -13,7 +13,6 @@ import com.example.onlinephoneshop.service.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,19 +31,14 @@ public class RatingController {
 	RatingService ratingService;
 
 	@GetMapping
-	public Optional<Rating> getRatingById(@RequestParam String username, @RequestParam String productId){
-		RatingId ratingId = new RatingId(username, productId);
+	public Optional<Rating> getRatingById(@RequestParam String userId, @RequestParam String productId){
+		RatingId ratingId = new RatingId(userId, productId);
 		return ratingService.getByRatingId(ratingId);
 	}
 	
 	@GetMapping("user/{userId}")
 	public List<Rating> getUserRatings(@PathVariable String userId){
 		return ratingService.getAllRatingByUserId(userId);
-	}
-	
-	@GetMapping("product/{id}")
-	public List<Rating> getProductRatings(@PathVariable String id){
-		return ratingService.getAllRatingByProductId(id);
 	}
 	
 	@PostMapping
