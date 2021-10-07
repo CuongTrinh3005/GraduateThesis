@@ -15,5 +15,5 @@ public interface RatingService {
 	List<Rating> getAllRatingByUserId(String userId);
 	List<Rating> getAllRatingByProductId(String productId);
 	Boolean checkRatingExist(RatingId ratingId);
-	RatingDTO convertToDTO(Rating rating);
+	RatingDTO convertToDTO(Rating rating) throws Throwable;
 }
