@@ -14,4 +14,5 @@ public class PhoneDTO extends ProductDTO{
     private String model;
     @Size(min = 15, max = 15)
     private String imeiNo;
+    private final Integer type=1;
 }

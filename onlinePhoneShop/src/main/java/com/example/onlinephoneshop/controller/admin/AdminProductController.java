@@ -45,19 +45,25 @@ public class AdminProductController {
         return ResponseEntity.created(location).build();
     }
 
-    @DeleteMapping("phones/{phoneId}")
-    void deletePhoneById(@PathVariable String phoneId) throws Throwable {
-        Phone phone=null;
-        Optional<Object> phoneOtp = phoneService.getProductById(phoneId);
-        if(phoneOtp.get() instanceof Phone){
-            phone = (Phone) phoneOtp.get();
+    @DeleteMapping("{productId}")
+    void deletePhoneById(@PathVariable String productId) throws Throwable {
+        Phone phone=null; Accessory accessory = null;
+        Optional<Object> productOpt = phoneService.getProductById(productId);
+        Object product = productOpt.get();
+        if(product instanceof Phone){
+            phone = (Phone) product;
+            if(phone.getOrderDetails().size()==0 && phone.getRatings().size()==0)
+                phoneService.deleteProductById(productId);
+            else
+                throw new CustomException(CustomMessages.NOT_DELETE_PRODUCT.getDescription());
         }
-        else return;
-
-        if(phone.getOrderDetails().size()==0 && phone.getRatings().size()==0)
-            phoneService.deletePhoneById(phoneId);
-        else
-            throw new CustomException(CustomMessages.NOT_DELETE_PRODUCT.getDescription());
+        else{
+            accessory = (Accessory) product;
+            if(accessory.getOrderDetails().size()==0 && accessory.getRatings().size()==0)
+                phoneService.deleteProductById(productId);
+            else
+                throw new CustomException(CustomMessages.NOT_DELETE_PRODUCT.getDescription());
+        }
     }
 
     @PutMapping("phones/{phoneId}")

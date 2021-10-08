@@ -1,5 +1,6 @@
 package com.example.onlinephoneshop.service;
 
+import com.example.onlinephoneshop.dto.AccessoryDTO;
 import com.example.onlinephoneshop.dto.PhoneDTO;
 import com.example.onlinephoneshop.entity.Accessory;
 import com.example.onlinephoneshop.entity.Phone;
@@ -11,9 +12,9 @@ import java.util.Set;
 
 @Service
 public interface PhoneService {
-    List<Phone> getAllProducts();
+    List<Object> getAllProducts();
     Phone savePhone(PhoneDTO phoneDTO);
-    void deletePhoneById(String id);
+    void deleteProductById(String id);
     Phone convertDTOToEntity(PhoneDTO phoneDTO);
     PhoneDTO convertEntityToDTO(Phone phone);
     Phone updatePhone(PhoneDTO phoneDTO, String id) throws Throwable;
@@ -26,4 +27,6 @@ public interface PhoneService {
     List<Object> getTop10MostDiscount();
     List<Object> getTop10BestSeller(int offset, int limit);
     List<Object> getTop10Newest();
+    Boolean existByImeiNo(String imeiNo);
+    Set<AccessoryDTO> getAllAccessoriesOfPhone(String phoneId) throws Throwable;
 }

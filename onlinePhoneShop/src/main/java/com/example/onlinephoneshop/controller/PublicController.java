@@ -4,13 +4,11 @@ import com.example.onlinephoneshop.dto.AccessoryDTO;
 import com.example.onlinephoneshop.dto.PhoneDTO;
 import com.example.onlinephoneshop.entity.*;
 import com.example.onlinephoneshop.service.*;
+import com.example.onlinephoneshop.utils.Helper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -92,8 +90,32 @@ public class PublicController {
 	}
 
 	@GetMapping("products")
-	public List<Phone> getAllProducts(){
-		return phoneService.getAllProducts();
+	public List<Object> getAllProducts(){
+		List<Object> productList = phoneService.getAllProducts();
+		List<Object> productDTOList = new ArrayList<>();
+		Phone phone = null; Accessory accessory = null;
+		for (Object product: productList) {
+			if(product instanceof Phone){
+				phone = (Phone) product;
+				PhoneDTO phoneDTO = phoneService.convertEntityToDTO(phone);
+				productDTOList.add(phoneDTO);
+			}
+			else{
+				accessory = (Accessory) product;
+				AccessoryDTO accessoryDTO = accessoryService.convertEntityToDTO(accessory);
+				productDTOList.add(accessoryDTO);
+			}
+		}
+		return productDTOList;
+	}
+
+	@GetMapping("imei")
+	public String getIMEINo(){
+		String imeiNo = Helper.generateIMEI();
+		while(phoneService.existByImeiNo(imeiNo)){
+			imeiNo = Helper.generateIMEI();
+		}
+		return imeiNo;
 	}
 
 	@GetMapping("products/{productId}")
@@ -102,6 +124,16 @@ public class PublicController {
 		if(object instanceof Phone)
 			return phoneService.convertEntityToDTO((Phone) object);
 		else return accessoryService.convertEntityToDTO((Accessory) object);
+	}
+
+	@GetMapping("products/{productId}/list-accessories")
+	public Set<AccessoryDTO> getAccessoriesOfphoneId(@PathVariable String productId) throws Throwable {
+		return phoneService.getAllAccessoriesOfPhone(productId);
+	}
+
+	@GetMapping("products/accessories")
+	public List<AccessoryDTO> getAllAccessories(){
+		return accessoryService.getAllAccessories().stream().map(accessoryService::convertEntityToDTO).collect(Collectors.toList());
 	}
 
 	@GetMapping("ratings/products/{id}")

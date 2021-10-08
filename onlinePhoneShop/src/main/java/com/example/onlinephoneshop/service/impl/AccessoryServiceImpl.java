@@ -3,10 +3,7 @@ package com.example.onlinephoneshop.service.impl;
 import com.example.onlinephoneshop.dto.AccessoryDTO;
 import com.example.onlinephoneshop.dto.PhoneDTO;
 import com.example.onlinephoneshop.entity.*;
-import com.example.onlinephoneshop.repository.AccessoryRepository;
-import com.example.onlinephoneshop.repository.BrandRepository;
-import com.example.onlinephoneshop.repository.CategoryRepository;
-import com.example.onlinephoneshop.repository.ManufacturerRepository;
+import com.example.onlinephoneshop.repository.*;
 import com.example.onlinephoneshop.service.AccessoryService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +16,9 @@ import java.util.Optional;
 public class AccessoryServiceImpl implements AccessoryService {
     @Autowired
     AccessoryRepository accessoryRepository;
+
+    @Autowired
+    AccessorySpecificRepository accessorySpecificRepository;
 
     @Autowired
     BrandRepository brandRepository;
@@ -34,7 +34,7 @@ public class AccessoryServiceImpl implements AccessoryService {
 
     @Override
     public List<Accessory> getAllAccessories() {
-        return accessoryRepository.findAll();
+        return accessorySpecificRepository.findAll();
     }
 
     @Override

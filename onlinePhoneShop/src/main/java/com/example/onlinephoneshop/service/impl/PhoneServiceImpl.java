@@ -1,13 +1,11 @@
 package com.example.onlinephoneshop.service.impl;
 
+import com.example.onlinephoneshop.dto.AccessoryDTO;
 import com.example.onlinephoneshop.dto.PhoneDTO;
 import com.example.onlinephoneshop.entity.*;
 import com.example.onlinephoneshop.enums.CustomMessages;
 import com.example.onlinephoneshop.exception.ResourceNotFoundException;
-import com.example.onlinephoneshop.repository.BrandRepository;
-import com.example.onlinephoneshop.repository.CategoryRepository;
-import com.example.onlinephoneshop.repository.ManufacturerRepository;
-import com.example.onlinephoneshop.repository.PhoneRepository;
+import com.example.onlinephoneshop.repository.*;
 import com.example.onlinephoneshop.service.AccessoryService;
 import com.example.onlinephoneshop.service.PhoneService;
 import org.modelmapper.ModelMapper;
@@ -17,11 +15,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.data.domain.PageRequest;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class PhoneServiceImpl implements PhoneService {
     @Autowired
     PhoneRepository phoneRepository;
+
+    @Autowired
+    PhoneSpecificRepository phoneSpecificRepository;
 
     @Autowired
     ModelMapper modelMapper;
@@ -39,8 +41,13 @@ public class PhoneServiceImpl implements PhoneService {
     AccessoryService accessoryService;
 
     @Override
-    public List<Phone> getAllProducts() {
+    public List<Object> getAllProducts() {
         return phoneRepository.findAll();
+    }
+
+    @Override
+    public Boolean existByImeiNo(String imeiNo) {
+        return phoneSpecificRepository.existsByImeiNo(imeiNo);
     }
 
     @Override
@@ -119,7 +126,7 @@ public class PhoneServiceImpl implements PhoneService {
     }
 
     @Override
-    public void deletePhoneById(String id) {
+    public void deleteProductById(String id) {
         phoneRepository.deleteById(id);
     }
 
@@ -134,6 +141,18 @@ public class PhoneServiceImpl implements PhoneService {
 
         existingPhone.setAccessories(accessories);
         return (Phone) phoneRepository.save(existingPhone);
+    }
+
+    @Override
+    public Set<AccessoryDTO> getAllAccessoriesOfPhone(String phoneId) throws Throwable {
+        Object existingPhone = getProductById(phoneId).get();
+        Phone phone = null;
+        if(existingPhone instanceof Phone){
+            phone = (Phone) existingPhone;
+        }
+        if(phone != null)
+            return phone.getAccessories().stream().map(accessoryService::convertEntityToDTO).collect(Collectors.toSet());
+        else return new HashSet<>();
     }
 
     @Override
