@@ -8,7 +8,6 @@ import lombok.Setter;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 
 @Getter @Setter
 @NoArgsConstructor
@@ -28,7 +27,6 @@ public class ProductDTO {
     private Float discount;
     private byte[] image;
     private String description;
-    private String specification;
     @DecimalMin(value = "0", message = "No. view must be not under 0")
     private Long viewCount;
     private Boolean special;
@@ -38,6 +36,18 @@ public class ProductDTO {
     private Integer warranty;
 
     private Float label;
+
+    @DecimalMin(value = "0", message = "Discount must be not under 0%")
+    @DecimalMax(value = "1", message = "Discount must be not over 70%")
+    private Float commonCoef=0F;
+
+    @DecimalMin(value = "0", message = "Discount must be not under 0%")
+    @DecimalMax(value = "1", message = "Discount must be not over 70%")
+    private Float gamingCoef=0F;
+
+    @DecimalMin(value = "0", message = "Discount must be not under 0%")
+    @DecimalMax(value = "1", message = "Discount must be not over 70%")
+    private Float entertainCoef=0F;
 
     @NotBlank
     private String categoryName;

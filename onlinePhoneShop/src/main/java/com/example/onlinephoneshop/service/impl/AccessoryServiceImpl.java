@@ -83,17 +83,19 @@ public class AccessoryServiceImpl implements AccessoryService {
         existingAccessory.setDiscount(updateAccessory.getDiscount());
         existingAccessory.setAvailable(updateAccessory.getAvailable());
         existingAccessory.setImage(updateAccessory.getImage());
-
         existingAccessory.setQuantity(updateAccessory.getQuantity());
         existingAccessory.setUnitPrice(updateAccessory.getUnitPrice());
         existingAccessory.setSpecial(updateAccessory.getSpecial());
-        existingAccessory.setSpecification(updateAccessory.getSpecification());
         existingAccessory.setViewCount(updateAccessory.getViewCount());
         existingAccessory.setLabel(updateAccessory.getLabel());
         existingAccessory.setWarranty(updateAccessory.getWarranty());
+        existingAccessory.setCommonCoef(updateAccessory.getCommonCoef());
+        existingAccessory.setGamingCoef(updateAccessory.getGamingCoef());
+        existingAccessory.setEntertainCoef(updateAccessory.getEntertainCoef());
 
         existingAccessory.setFunctions(updateAccessory.getFunctions());
         existingAccessory.setCompatibleDevices(updateAccessory.getCompatibleDevices());
+        existingAccessory.setOtherSpecification(updateAccessory.getOtherSpecification());
 
         existingAccessory.setCategory(updateAccessory.getCategory());
         existingAccessory.setBrand(updateAccessory.getBrand());

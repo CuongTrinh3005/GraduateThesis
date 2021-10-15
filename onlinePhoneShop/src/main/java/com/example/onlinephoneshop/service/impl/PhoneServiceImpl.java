@@ -66,17 +66,36 @@ public class PhoneServiceImpl implements PhoneService {
         existingPhone.setDiscount(updatePhone.getDiscount());
         existingPhone.setAvailable(updatePhone.getAvailable());
         existingPhone.setImage(updatePhone.getImage());
-
         existingPhone.setQuantity(updatePhone.getQuantity());
         existingPhone.setUnitPrice(updatePhone.getUnitPrice());
         existingPhone.setSpecial(updatePhone.getSpecial());
-        existingPhone.setSpecification(updatePhone.getSpecification());
         existingPhone.setViewCount(updatePhone.getViewCount());
         existingPhone.setLabel(updatePhone.getLabel());
         existingPhone.setWarranty(updatePhone.getWarranty());
+        existingPhone.setCommonCoef(updatePhone.getCommonCoef());
+        existingPhone.setGamingCoef(updatePhone.getGamingCoef());
+        existingPhone.setEntertainCoef(updatePhone.getEntertainCoef());
 
         existingPhone.setImeiNo(updatePhone.getImeiNo());
         existingPhone.setModel(updatePhone.getModel());
+        existingPhone.setRam(updatePhone.getRam());
+        existingPhone.setBatteryPower(updatePhone.getBatteryPower());
+        existingPhone.setInMemory(updatePhone.getInMemory());
+        existingPhone.setTouchScreen(updatePhone.getTouchScreen());
+        existingPhone.setWifi(updatePhone.getWifi());
+        existingPhone.setBluetooth(updatePhone.getBluetooth());
+        existingPhone.setClockSpeed(updatePhone.getClockSpeed());
+        existingPhone.setN_cores(updatePhone.getN_cores());
+        existingPhone.setN_sim(updatePhone.getN_sim());
+        existingPhone.setPxHeight(updatePhone.getPxHeight());
+        existingPhone.setPxWidth(updatePhone.getPxWidth());
+        existingPhone.setScreenHeight(updatePhone.getScreenHeight());
+        existingPhone.setScreenWidth(updatePhone.getScreenWidth());
+        existingPhone.setFrontCam(updatePhone.getFrontCam());
+        existingPhone.setSupport_3G(updatePhone.getSupport_3G());
+        existingPhone.setSupport_4G(updatePhone.getSupport_4G());
+        existingPhone.setSupport_5G(updatePhone.getSupport_5G());
+        existingPhone.setOtherSpecification(updatePhone.getOtherSpecification());
 
         existingPhone.setCategory(updatePhone.getCategory());
         existingPhone.setBrand(updatePhone.getBrand());
@@ -92,10 +111,14 @@ public class PhoneServiceImpl implements PhoneService {
         Accessory accessory = null;
         if(object instanceof Phone){
             phone = (Phone) object;
+            phone.setViewCount(phone.getViewCount()+1);
+            phoneRepository.save(phone);
             return Optional.of(phone);
         }
         else{
             accessory = (Accessory) object;
+            accessory.setViewCount(accessory.getViewCount()+1);
+            phoneRepository.save(accessory);
             return Optional.of(accessory);
         }
     }
@@ -171,7 +194,6 @@ public class PhoneServiceImpl implements PhoneService {
     }
 
     // Statistics
-
     @Override
     public List<Object> getTop10MostView() {
         return phoneRepository.findTop10ByOrderByViewCountDesc();

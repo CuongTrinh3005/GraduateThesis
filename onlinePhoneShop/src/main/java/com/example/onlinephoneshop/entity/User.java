@@ -74,6 +74,21 @@ public class User extends AuditModel{
     @Past
     private Date birthday;
 
+    @Column()
+    @DecimalMin(value = "0", message = "Discount must be not under 0%")
+    @DecimalMax(value = "1", message = "Discount must be not over 70%")
+    private Float commonCoef;
+
+    @Column()
+    @DecimalMin(value = "0", message = "Discount must be not under 0%")
+    @DecimalMax(value = "1", message = "Discount must be not over 70%")
+    private Float gamingCoef;
+
+    @Column()
+    @DecimalMin(value = "0", message = "Discount must be not under 0%")
+    @DecimalMax(value = "1", message = "Discount must be not over 70%")
+    private Float entertainCoef;
+
     @OneToMany(mappedBy="user", fetch=FetchType.EAGER)
     @JsonIgnore
     private Set<Order> orders;

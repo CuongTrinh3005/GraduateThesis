@@ -26,6 +26,7 @@ import java.util.Set;
 public class Product extends AuditModel {
     @Id
     @Column
+    @Length(max = 15)
     @GeneratedValue(generator = "phoneid-generator")
     @GenericGenerator(name = "phoneid-generator",
             parameters = @Parameter(name = "prefix", value = "PD"),
@@ -57,8 +58,20 @@ public class Product extends AuditModel {
     @Column(columnDefinition = "ntext")
     private String description;
 
-    @Column(columnDefinition = "ntext")
-    private String specification;
+    @Column()
+    @DecimalMin(value = "0", message = "Discount must be not under 0%")
+    @DecimalMax(value = "1", message = "Discount must be not over 70%")
+    private Float commonCoef=0F;
+
+    @Column()
+    @DecimalMin(value = "0", message = "Discount must be not under 0%")
+    @DecimalMax(value = "1", message = "Discount must be not over 70%")
+    private Float gamingCoef=0F;
+
+    @Column()
+    @DecimalMin(value = "0", message = "Discount must be not under 0%")
+    @DecimalMax(value = "1", message = "Discount must be not over 70%")
+    private Float entertainCoef=0F;
 
     @Column
     @DecimalMin(value = "0", message = "No. view must be not under 0")
@@ -75,7 +88,7 @@ public class Product extends AuditModel {
     private Integer warranty;
 
     @Column
-    private Float label;
+    private Integer label=0;
 
     // Specify entity relationships
     @ManyToOne

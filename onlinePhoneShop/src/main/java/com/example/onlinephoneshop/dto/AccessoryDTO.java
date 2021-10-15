@@ -11,5 +11,7 @@ import lombok.Setter;
 public class AccessoryDTO extends ProductDTO{
     private String compatibleDevices;
     private String functions;
+    private String otherSpecification;
+
     private final Integer type=2;
 }
