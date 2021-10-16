@@ -81,6 +81,9 @@ public class Phone extends Product{
     private Float screenWidth;
 
     @Column
+    private Integer refreshRate;
+
+    @Column
     private Integer frontCam;
 
     @Column

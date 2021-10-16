@@ -91,6 +91,7 @@ public class PhoneServiceImpl implements PhoneService {
         existingPhone.setPxWidth(updatePhone.getPxWidth());
         existingPhone.setScreenHeight(updatePhone.getScreenHeight());
         existingPhone.setScreenWidth(updatePhone.getScreenWidth());
+        existingPhone.setRefreshRate(updatePhone.getRefreshRate());
         existingPhone.setFrontCam(updatePhone.getFrontCam());
         existingPhone.setSupport_3G(updatePhone.getSupport_3G());
         existingPhone.setSupport_4G(updatePhone.getSupport_4G());

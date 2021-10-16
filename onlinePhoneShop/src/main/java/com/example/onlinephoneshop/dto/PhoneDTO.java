@@ -40,6 +40,7 @@ public class PhoneDTO extends ProductDTO{
     private Float screenHeight;
     @NotNull
     private Float screenWidth;
+    private Integer refreshRate;
     private Integer frontCam;
     private Boolean support_3G;
     private Boolean support_4G;
