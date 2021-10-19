@@ -3,6 +3,7 @@ package com.example.onlinephoneshop.controller;
 import com.example.onlinephoneshop.dto.AccessoryDTO;
 import com.example.onlinephoneshop.dto.PhoneDTO;
 import com.example.onlinephoneshop.entity.*;
+import com.example.onlinephoneshop.payload.request.SimilarProductListIds;
 import com.example.onlinephoneshop.service.*;
 import com.example.onlinephoneshop.utils.Helper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,6 +93,26 @@ public class PublicController {
 	@GetMapping("products")
 	public List<Object> getAllProducts(){
 		List<Object> productList = phoneService.getAllProducts();
+		List<Object> productDTOList = new ArrayList<>();
+		Phone phone = null; Accessory accessory = null;
+		for (Object product: productList) {
+			if(product instanceof Phone){
+				phone = (Phone) product;
+				PhoneDTO phoneDTO = phoneService.convertEntityToDTO(phone);
+				productDTOList.add(phoneDTO);
+			}
+			else{
+				accessory = (Accessory) product;
+				AccessoryDTO accessoryDTO = accessoryService.convertEntityToDTO(accessory);
+				productDTOList.add(accessoryDTO);
+			}
+		}
+		return productDTOList;
+	}
+
+	@PostMapping("products/list-ids")
+	public List<Object> getAllProductsByIds(@RequestBody SimilarProductListIds ids){
+		List<Object> productList = phoneService.getByListIds(ids.getSimilarProductIds());
 		List<Object> productDTOList = new ArrayList<>();
 		Phone phone = null; Accessory accessory = null;
 		for (Object product: productList) {

@@ -106,6 +106,11 @@ public class PhoneServiceImpl implements PhoneService {
     }
 
     @Override
+    public List<Object> getByListIds(List<String> ids) {
+        return phoneRepository.findAllById(ids);
+    }
+
+    @Override
     public Optional<Object> getProductById(String id) throws Throwable {
         Object object =  phoneRepository.findById(id).get();
         Phone phone = null;
