@@ -9,6 +9,7 @@ import com.example.onlinephoneshop.entity.Rating.RatingId;
 
 public interface RatingService {
 	List<Rating> getAllRatings();
+	List<Rating> getAllRatingsOrderByUpdatedDate();
 	Optional<Rating> getByRatingId(RatingId id);
 	Rating saveRating(Rating rating);
 	Rating updateRating(Rating rating);

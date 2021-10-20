@@ -23,7 +23,7 @@ public class AdminRatingController {
 
     @GetMapping
     public List<RatingDTO> getAllRatings() throws Throwable{
-        List<Rating> ratingList = ratingService.getAllRatings();
+        List<Rating> ratingList = ratingService.getAllRatingsOrderByUpdatedDate();
         List<RatingDTO> dtoList = new ArrayList<>();
         for(Rating rating:ratingList){
             RatingDTO ratingDTO = ratingService.convertToDTO(rating);

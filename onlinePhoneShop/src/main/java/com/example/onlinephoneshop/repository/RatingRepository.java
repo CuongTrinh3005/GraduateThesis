@@ -12,4 +12,5 @@ public interface RatingRepository extends JpaRepository<Rating, RatingId> {
 	List<Rating> findByRatingIdUserId(String userId);
 	List<Rating> findByRatingIdProductId(String productId);
 	Boolean existsByRatingId(RatingId ratingId);
+	List<Rating> findAllByOrderByUpdatedDateDesc();
 }
