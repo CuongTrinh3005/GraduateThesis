@@ -157,6 +157,10 @@ public class UserServiceImpl implements UserService {
         existedUser.setBirthday(user.getBirthday());
         existedUser.setRoles(user.getRoles());
 
+        existedUser.setCommonCoef(user.getCommonCoef());
+        existedUser.setEntertainCoef(user.getEntertainCoef());
+        existedUser.setGamingCoef(user.getGamingCoef());
+
         return saveUser(existedUser);
     }
 

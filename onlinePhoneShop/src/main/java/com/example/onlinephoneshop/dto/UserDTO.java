@@ -26,4 +26,7 @@ public class UserDTO {
     @Past
     private Date birthday;
     private String roleName="USER";
+    private Float commonCoef=0F;
+    private Float entertainCoef=0F;
+    private Float gamingCoef=0F;
 }

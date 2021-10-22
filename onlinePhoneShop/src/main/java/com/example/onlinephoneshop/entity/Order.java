@@ -13,6 +13,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.Parameter;
+import org.hibernate.validator.constraints.Length;
 
 import java.util.Collection;
 
@@ -24,6 +25,7 @@ import java.util.Collection;
 public class Order extends AuditModel {
     @Id
     @Column
+    @Length(max = 15)
     @GeneratedValue(generator = "userid-generator")
     @GenericGenerator(name = "userid-generator",
             parameters = @Parameter(name = "prefix", value = "OD"),

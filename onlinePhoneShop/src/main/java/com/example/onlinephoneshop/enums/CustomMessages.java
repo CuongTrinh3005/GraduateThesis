@@ -26,7 +26,8 @@ public enum CustomMessages {
     NEW_PASSWORD_MUST_DIFFERENT_CURRENT_PASSWORD("New password must be different with current password!"),
     NOT_DELETE_USER("Not allow to delete user having orders or ratings"),
     CHANGE_PASSWORD_SUCCESS("Change password successfully!"),
-    CHANGE_PASSWORD_FAILED("Change password failed!");
+    CHANGE_PASSWORD_FAILED("Change password failed!"),
+    HISTORY_VIEWING_NOT_EXISTED("History viewing is not found!");
 
     private final String description;
 

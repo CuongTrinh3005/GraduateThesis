@@ -27,32 +27,32 @@ public class Phone extends Product{
     private String model;
 
     @Column
-//    @NotBlank
+    @NotBlank
     @Size(min = 15, max = 15)
     private String imeiNo;
 
     @Column
-//    @NotNull
+    @NotNull
     private Integer ram;
 
     @Column
-//    @NotNull
+    @NotNull
     private Integer batteryPower;
 
     @Column
-//    @NotNull
+    @NotNull
     private Integer inMemory;
 
     @Column
-//    @NotNull
+    @NotNull
     private Boolean touchScreen;
 
     @Column
-//    @NotNull
+    @NotNull
     private Boolean wifi;
 
     @Column
-//    @NotNull
+    @NotNull
     private Boolean bluetooth;
 
     @Column
@@ -65,19 +65,19 @@ public class Phone extends Product{
     private Integer n_sim;
 
     @Column
-//    @NotNull
+    @NotNull
     private Integer pxHeight;
 
     @Column
-//    @NotNull
+    @NotNull
     private Integer pxWidth;
 
     @Column
-//    @NotNull
+    @NotNull
     private Float screenHeight;
 
     @Column
-//    @NotNull
+    @NotNull
     private Float screenWidth;
 
     @Column
@@ -85,6 +85,9 @@ public class Phone extends Product{
 
     @Column
     private Integer frontCam;
+
+    @Column(columnDefinition = "nvarchar")
+    private String backCam;
 
     @Column
     private Boolean support_3G;

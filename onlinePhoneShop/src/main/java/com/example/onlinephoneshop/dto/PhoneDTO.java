@@ -42,9 +42,10 @@ public class PhoneDTO extends ProductDTO{
     private Float screenWidth;
     private Integer refreshRate;
     private Integer frontCam;
+    private String backCam;
     private Boolean support_3G;
     private Boolean support_4G;
     private Boolean support_5G;
     private String otherSpecification;
-    private final Integer type=1;
+//    private final Integer type=1;
 }

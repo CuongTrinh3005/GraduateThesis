@@ -35,7 +35,7 @@ public class ProductDTO {
     @DecimalMin(value = "0", message ="Number of month in warranty must greater than 0")
     private Integer warranty;
 
-    private Float label;
+    private Integer type;
 
     @DecimalMin(value = "0", message = "Discount must be not under 0%")
     @DecimalMax(value = "1", message = "Discount must be not over 70%")

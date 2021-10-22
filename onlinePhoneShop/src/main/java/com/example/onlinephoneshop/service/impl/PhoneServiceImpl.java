@@ -70,7 +70,7 @@ public class PhoneServiceImpl implements PhoneService {
         existingPhone.setUnitPrice(updatePhone.getUnitPrice());
         existingPhone.setSpecial(updatePhone.getSpecial());
         existingPhone.setViewCount(updatePhone.getViewCount());
-        existingPhone.setLabel(updatePhone.getLabel());
+        existingPhone.setType(updatePhone.getType());
         existingPhone.setWarranty(updatePhone.getWarranty());
         existingPhone.setCommonCoef(updatePhone.getCommonCoef());
         existingPhone.setGamingCoef(updatePhone.getGamingCoef());
@@ -93,6 +93,7 @@ public class PhoneServiceImpl implements PhoneService {
         existingPhone.setScreenWidth(updatePhone.getScreenWidth());
         existingPhone.setRefreshRate(updatePhone.getRefreshRate());
         existingPhone.setFrontCam(updatePhone.getFrontCam());
+        existingPhone.setBackCam(updatePhone.getBackCam());
         existingPhone.setSupport_3G(updatePhone.getSupport_3G());
         existingPhone.setSupport_4G(updatePhone.getSupport_4G());
         existingPhone.setSupport_5G(updatePhone.getSupport_5G());

@@ -12,6 +12,8 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotBlank;
+
 import org.hibernate.annotations.Parameter;
 import org.hibernate.validator.constraints.Length;
 
@@ -35,7 +37,7 @@ public class Product extends AuditModel {
 
     @Column(columnDefinition = "nvarchar", length = 200)
     @Length(max = 200)
-//    @NotBlank
+    @NotBlank
     private String productName;
 
     @Column
@@ -88,7 +90,7 @@ public class Product extends AuditModel {
     private Integer warranty;
 
     @Column
-    private Integer label=0;
+    private Integer type=1;
 
     // Specify entity relationships
     @ManyToOne

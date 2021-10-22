@@ -13,5 +13,5 @@ public class AccessoryDTO extends ProductDTO{
     private String functions;
     private String otherSpecification;
 
-    private final Integer type=2;
+//    private final Integer type=2;
 }

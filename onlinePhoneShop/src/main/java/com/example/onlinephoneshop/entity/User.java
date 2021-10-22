@@ -31,6 +31,7 @@ import org.hibernate.validator.constraints.Length;
 public class User extends AuditModel{
     @Id
     @Column
+    @Length(max = 15)
     @GeneratedValue(generator = "userid-generator")
     @GenericGenerator(name = "userid-generator",
             parameters = @Parameter(name = "prefix", value = "US"),
@@ -77,17 +78,17 @@ public class User extends AuditModel{
     @Column()
     @DecimalMin(value = "0", message = "Discount must be not under 0%")
     @DecimalMax(value = "1", message = "Discount must be not over 70%")
-    private Float commonCoef;
+    private Float commonCoef=0F;
 
     @Column()
     @DecimalMin(value = "0", message = "Discount must be not under 0%")
     @DecimalMax(value = "1", message = "Discount must be not over 70%")
-    private Float gamingCoef;
+    private Float gamingCoef=0F;
 
     @Column()
     @DecimalMin(value = "0", message = "Discount must be not under 0%")
     @DecimalMax(value = "1", message = "Discount must be not over 70%")
-    private Float entertainCoef;
+    private Float entertainCoef=0F;
 
     @OneToMany(mappedBy="user", fetch=FetchType.EAGER)
     @JsonIgnore

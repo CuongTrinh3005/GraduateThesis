@@ -9,6 +9,9 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
 import java.io.Serializable;
 
 @Entity
@@ -38,8 +41,10 @@ public class OrderDetails {
     public static class OrderDetailID implements Serializable {
         private static final long serialVersionUID = 1L;
         @Column
+        @Length(max = 15)
         private String orderId;
         @Column
+        @Length(max = 15)
         private String productId ;
     }
 
