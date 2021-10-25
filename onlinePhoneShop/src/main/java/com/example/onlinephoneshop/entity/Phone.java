@@ -56,10 +56,22 @@ public class Phone extends Product{
     private Boolean bluetooth;
 
     @Column
-    private Float clockSpeed;
+    private Float clockSpeed1;
+    
+    @Column
+    private Float clockSpeed2;
+    
+    @Column
+    private Float clockSpeed3;
 
     @Column
-    private Integer n_cores;
+    private Integer n_cores1;
+    
+    @Column
+    private Integer n_cores2;
+    
+    @Column
+    private Integer n_cores3;
 
     @Column
     private Integer n_sim;
@@ -84,7 +96,10 @@ public class Phone extends Product{
     private Integer refreshRate;
 
     @Column
-    private Integer frontCam;
+    private Integer frontCam1;
+    
+    @Column
+    private Integer frontCam2;
 
     @Column(columnDefinition = "nvarchar")
     private String backCam;

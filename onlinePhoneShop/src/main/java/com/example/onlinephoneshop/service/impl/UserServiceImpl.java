@@ -74,6 +74,9 @@ public class UserServiceImpl implements UserService {
     public User saveUser(User user) {
         final String defaultPassword = "1234";
         user.setPassword(encoder.encode(defaultPassword));
+        if(user.getGender()==null)
+        	user.setGender(true);
+        
         return userRepository.save(user);
     }
 

@@ -129,6 +129,9 @@ public class AuthController {
 		}
 
 		user.setRoles(roles);
+		if(user.getGender()==null)
+			user.setGender(true);
+		
 		userRepository.save(user);
 
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));

@@ -32,6 +32,7 @@ public class AdminUserController {
     @PostMapping
     public ResponseEntity<User> insertUser(@Valid @RequestBody UserDTO userDTO){
         User newUser = userService.saveUser(userService.convertToEntity(userDTO));
+        
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{username}")
                 .buildAndExpand(newUser.getUsername())

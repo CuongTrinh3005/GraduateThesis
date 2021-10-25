@@ -84,15 +84,20 @@ public class PhoneServiceImpl implements PhoneService {
         existingPhone.setTouchScreen(updatePhone.getTouchScreen());
         existingPhone.setWifi(updatePhone.getWifi());
         existingPhone.setBluetooth(updatePhone.getBluetooth());
-        existingPhone.setClockSpeed(updatePhone.getClockSpeed());
-        existingPhone.setN_cores(updatePhone.getN_cores());
+        existingPhone.setClockSpeed1(updatePhone.getClockSpeed1());
+        existingPhone.setClockSpeed2(updatePhone.getClockSpeed2());
+        existingPhone.setClockSpeed3(updatePhone.getClockSpeed3());
+        existingPhone.setN_cores1(updatePhone.getN_cores1());
+        existingPhone.setN_cores2(updatePhone.getN_cores2());
+        existingPhone.setN_cores3(updatePhone.getN_cores3());
         existingPhone.setN_sim(updatePhone.getN_sim());
         existingPhone.setPxHeight(updatePhone.getPxHeight());
         existingPhone.setPxWidth(updatePhone.getPxWidth());
         existingPhone.setScreenHeight(updatePhone.getScreenHeight());
         existingPhone.setScreenWidth(updatePhone.getScreenWidth());
         existingPhone.setRefreshRate(updatePhone.getRefreshRate());
-        existingPhone.setFrontCam(updatePhone.getFrontCam());
+        existingPhone.setFrontCam1(updatePhone.getFrontCam1());
+        existingPhone.setFrontCam2(updatePhone.getFrontCam2());
         existingPhone.setBackCam(updatePhone.getBackCam());
         existingPhone.setSupport_3G(updatePhone.getSupport_3G());
         existingPhone.setSupport_4G(updatePhone.getSupport_4G());
@@ -151,6 +156,7 @@ public class PhoneServiceImpl implements PhoneService {
         phoneDTO.setCategoryName(phone.getCategory().getCategoryName());
         phoneDTO.setBrandName(phone.getBrand().getBrandName());
         phoneDTO.setManufacturerName(phone.getManufacturer().getManufacturerName());
+        phoneDTO.setNumAccessories(phone.getAccessories().size());
 
         return phoneDTO;
     }

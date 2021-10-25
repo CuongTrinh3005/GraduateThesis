@@ -69,7 +69,7 @@ public class User extends AuditModel{
     private byte[] image;
 
     @Column
-    private Boolean gender;
+    private Boolean gender=true;
 
     @Column
     @Past
