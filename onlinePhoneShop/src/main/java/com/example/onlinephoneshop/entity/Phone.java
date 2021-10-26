@@ -32,89 +32,43 @@ public class Phone extends Product{
     private String imeiNo;
 
     @Column
-    @NotNull
     private Integer ram;
 
     @Column
-    @NotNull
+    private Integer rom;
+
+    @Column
     private Integer batteryPower;
 
     @Column
-    @NotNull
-    private Integer inMemory;
+    private Integer resolution;
 
     @Column
-    @NotNull
-    private Boolean touchScreen;
+    private Integer maxCore;
 
     @Column
-    @NotNull
-    private Boolean wifi;
-
-    @Column
-    @NotNull
-    private Boolean bluetooth;
-
-    @Column
-    private Float clockSpeed1;
-    
-    @Column
-    private Float clockSpeed2;
-    
-    @Column
-    private Float clockSpeed3;
-
-    @Column
-    private Integer n_cores1;
-    
-    @Column
-    private Integer n_cores2;
-    
-    @Column
-    private Integer n_cores3;
-
-    @Column
-    private Integer n_sim;
-
-    @Column
-    @NotNull
-    private Integer pxHeight;
-
-    @Column
-    @NotNull
-    private Integer pxWidth;
-
-    @Column
-    @NotNull
-    private Float screenHeight;
-
-    @Column
-    @NotNull
-    private Float screenWidth;
+    private Float maxSpeed;
 
     @Column
     private Integer refreshRate;
 
     @Column
-    private Integer frontCam1;
-    
-    @Column
-    private Integer frontCam2;
-
-    @Column(columnDefinition = "nvarchar")
-    private String backCam;
+    private Integer simSupport;
 
     @Column
-    private Boolean support_3G;
+    private Integer networks;
 
     @Column
-    private Boolean support_4G;
+    private Integer noFrontCam;
 
     @Column
-    private Boolean support_5G;
+    private Boolean touchScreen;
 
-    @Column(columnDefinition = "ntext")
-    private String otherSpecification;
+    @Column
+    private Boolean wifi;
+
+    @Column
+    private Boolean bluetooth;
 
     @ManyToMany
     @JoinTable(

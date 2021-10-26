@@ -19,7 +19,4 @@ public class Accessory extends Product{
 
     @Column(columnDefinition = "ntext")
     private String functions;
-
-    @Column(columnDefinition = "ntext")
-    private String otherSpecification;
 }

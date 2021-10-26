@@ -63,6 +63,7 @@ public class PhoneServiceImpl implements PhoneService {
 
         existingPhone.setProductName(updatePhone.getProductName());
         existingPhone.setDescription(updatePhone.getDescription());
+        existingPhone.setSpecification(updatePhone.getSpecification());
         existingPhone.setDiscount(updatePhone.getDiscount());
         existingPhone.setAvailable(updatePhone.getAvailable());
         existingPhone.setImage(updatePhone.getImage());
@@ -70,7 +71,7 @@ public class PhoneServiceImpl implements PhoneService {
         existingPhone.setUnitPrice(updatePhone.getUnitPrice());
         existingPhone.setSpecial(updatePhone.getSpecial());
         existingPhone.setViewCount(updatePhone.getViewCount());
-        existingPhone.setType(updatePhone.getType());
+        existingPhone.setLabel(updatePhone.getLabel());
         existingPhone.setWarranty(updatePhone.getWarranty());
         existingPhone.setCommonCoef(updatePhone.getCommonCoef());
         existingPhone.setGamingCoef(updatePhone.getGamingCoef());
@@ -79,30 +80,18 @@ public class PhoneServiceImpl implements PhoneService {
         existingPhone.setImeiNo(updatePhone.getImeiNo());
         existingPhone.setModel(updatePhone.getModel());
         existingPhone.setRam(updatePhone.getRam());
+        existingPhone.setRom(updatePhone.getRom());
         existingPhone.setBatteryPower(updatePhone.getBatteryPower());
-        existingPhone.setInMemory(updatePhone.getInMemory());
+        existingPhone.setResolution(updatePhone.getResolution());
+        existingPhone.setMaxCore(updatePhone.getMaxCore());
+        existingPhone.setMaxSpeed(updatePhone.getMaxSpeed());
+        existingPhone.setRefreshRate(updatePhone.getRefreshRate());
+        existingPhone.setSimSupport(updatePhone.getSimSupport());
+        existingPhone.setNetworks(updatePhone.getNetworks());
+        existingPhone.setNoFrontCam(updatePhone.getNoFrontCam());
         existingPhone.setTouchScreen(updatePhone.getTouchScreen());
         existingPhone.setWifi(updatePhone.getWifi());
         existingPhone.setBluetooth(updatePhone.getBluetooth());
-        existingPhone.setClockSpeed1(updatePhone.getClockSpeed1());
-        existingPhone.setClockSpeed2(updatePhone.getClockSpeed2());
-        existingPhone.setClockSpeed3(updatePhone.getClockSpeed3());
-        existingPhone.setN_cores1(updatePhone.getN_cores1());
-        existingPhone.setN_cores2(updatePhone.getN_cores2());
-        existingPhone.setN_cores3(updatePhone.getN_cores3());
-        existingPhone.setN_sim(updatePhone.getN_sim());
-        existingPhone.setPxHeight(updatePhone.getPxHeight());
-        existingPhone.setPxWidth(updatePhone.getPxWidth());
-        existingPhone.setScreenHeight(updatePhone.getScreenHeight());
-        existingPhone.setScreenWidth(updatePhone.getScreenWidth());
-        existingPhone.setRefreshRate(updatePhone.getRefreshRate());
-        existingPhone.setFrontCam1(updatePhone.getFrontCam1());
-        existingPhone.setFrontCam2(updatePhone.getFrontCam2());
-        existingPhone.setBackCam(updatePhone.getBackCam());
-        existingPhone.setSupport_3G(updatePhone.getSupport_3G());
-        existingPhone.setSupport_4G(updatePhone.getSupport_4G());
-        existingPhone.setSupport_5G(updatePhone.getSupport_5G());
-        existingPhone.setOtherSpecification(updatePhone.getOtherSpecification());
 
         existingPhone.setCategory(updatePhone.getCategory());
         existingPhone.setBrand(updatePhone.getBrand());

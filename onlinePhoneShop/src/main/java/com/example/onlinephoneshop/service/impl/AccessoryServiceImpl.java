@@ -80,6 +80,7 @@ public class AccessoryServiceImpl implements AccessoryService {
 
         existingAccessory.setProductName(updateAccessory.getProductName());
         existingAccessory.setDescription(updateAccessory.getDescription());
+        existingAccessory.setSpecification(updateAccessory.getSpecification());
         existingAccessory.setDiscount(updateAccessory.getDiscount());
         existingAccessory.setAvailable(updateAccessory.getAvailable());
         existingAccessory.setImage(updateAccessory.getImage());
@@ -87,7 +88,7 @@ public class AccessoryServiceImpl implements AccessoryService {
         existingAccessory.setUnitPrice(updateAccessory.getUnitPrice());
         existingAccessory.setSpecial(updateAccessory.getSpecial());
         existingAccessory.setViewCount(updateAccessory.getViewCount());
-        existingAccessory.setType(updateAccessory.getType());
+        existingAccessory.setLabel(updateAccessory.getLabel());
         existingAccessory.setWarranty(updateAccessory.getWarranty());
         existingAccessory.setCommonCoef(updateAccessory.getCommonCoef());
         existingAccessory.setGamingCoef(updateAccessory.getGamingCoef());
@@ -95,7 +96,6 @@ public class AccessoryServiceImpl implements AccessoryService {
 
         existingAccessory.setFunctions(updateAccessory.getFunctions());
         existingAccessory.setCompatibleDevices(updateAccessory.getCompatibleDevices());
-        existingAccessory.setOtherSpecification(updateAccessory.getOtherSpecification());
 
         existingAccessory.setCategory(updateAccessory.getCategory());
         existingAccessory.setBrand(updateAccessory.getBrand());

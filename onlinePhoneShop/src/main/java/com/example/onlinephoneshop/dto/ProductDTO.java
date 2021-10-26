@@ -14,7 +14,7 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 public class ProductDTO {
     private String productId;
-//    @NotEmpty
+    @NotBlank
     private String productName;
 
     @DecimalMin(value = "0", message = "Price must be not under 0")
@@ -27,6 +27,7 @@ public class ProductDTO {
     private Float discount;
     private byte[] image;
     private String description;
+    private String specification;
     @DecimalMin(value = "0", message = "No. view must be not under 0")
     private Long viewCount;
     private Boolean special;
@@ -35,7 +36,7 @@ public class ProductDTO {
     @DecimalMin(value = "0", message ="Number of month in warranty must greater than 0")
     private Integer warranty;
 
-    private Integer type;
+    private Integer label;
 
     @DecimalMin(value = "0", message = "Discount must be not under 0%")
     @DecimalMax(value = "1", message = "Discount must be not over 70%")

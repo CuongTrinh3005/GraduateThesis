@@ -60,6 +60,9 @@ public class Product extends AuditModel {
     @Column(columnDefinition = "ntext")
     private String description;
 
+    @Column(columnDefinition = "ntext")
+    private String specification;
+
     @Column()
     @DecimalMin(value = "0", message = "Discount must be not under 0%")
     @DecimalMax(value = "1", message = "Discount must be not over 70%")
@@ -90,7 +93,7 @@ public class Product extends AuditModel {
     private Integer warranty;
 
     @Column
-    private Integer type=1;
+    private Integer label=1;
 
     // Specify entity relationships
     @ManyToOne
