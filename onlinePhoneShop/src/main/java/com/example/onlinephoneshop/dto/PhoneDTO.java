@@ -18,10 +18,10 @@ public class PhoneDTO extends ProductDTO{
     @NotBlank
     private String imeiNo;
     @NotNull
-    private Integer ram;
+    private Float ram;
 
     @NotNull
-    private Integer rom;
+    private Float rom;
 
     @NotNull
     private Integer batteryPower;

@@ -32,10 +32,10 @@ public class Phone extends Product{
     private String imeiNo;
 
     @Column
-    private Integer ram;
+    private Float ram;
 
     @Column
-    private Integer rom;
+    private Float rom;
 
     @Column
     private Integer batteryPower;
