@@ -2,6 +2,7 @@ package com.example.onlinephoneshop.service.impl;
 
 import com.example.onlinephoneshop.dto.AccessoryDTO;
 import com.example.onlinephoneshop.dto.PhoneDTO;
+import com.example.onlinephoneshop.dto.ProductDTO;
 import com.example.onlinephoneshop.entity.*;
 import com.example.onlinephoneshop.enums.CustomMessages;
 import com.example.onlinephoneshop.exception.ResourceNotFoundException;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.data.domain.PageRequest;
 
+import java.lang.reflect.Type;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -146,6 +148,15 @@ public class PhoneServiceImpl implements PhoneService {
         phoneDTO.setBrandName(phone.getBrand().getBrandName());
         phoneDTO.setManufacturerName(phone.getManufacturer().getManufacturerName());
         phoneDTO.setNumAccessories(phone.getAccessories().size());
+
+        return phoneDTO;
+    }
+
+    public ProductDTO convertEntityToProductDTO(Product product) {
+        ProductDTO phoneDTO = modelMapper.map(product, ProductDTO.class);
+        phoneDTO.setCategoryName(product.getCategory().getCategoryName());
+        phoneDTO.setBrandName(product.getBrand().getBrandName());
+        phoneDTO.setManufacturerName(product.getManufacturer().getManufacturerName());
 
         return phoneDTO;
     }

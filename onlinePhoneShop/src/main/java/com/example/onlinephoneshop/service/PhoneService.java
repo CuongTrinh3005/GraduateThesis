@@ -2,8 +2,10 @@ package com.example.onlinephoneshop.service;
 
 import com.example.onlinephoneshop.dto.AccessoryDTO;
 import com.example.onlinephoneshop.dto.PhoneDTO;
+import com.example.onlinephoneshop.dto.ProductDTO;
 import com.example.onlinephoneshop.entity.Accessory;
 import com.example.onlinephoneshop.entity.Phone;
+import com.example.onlinephoneshop.entity.Product;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +20,7 @@ public interface PhoneService {
     void deleteProductById(String id);
     Phone convertDTOToEntity(PhoneDTO phoneDTO);
     PhoneDTO convertEntityToDTO(Phone phone);
+    ProductDTO convertEntityToProductDTO(Product product);
     Phone updatePhone(PhoneDTO phoneDTO, String id) throws Throwable;
     Optional<Object> getProductById(String id) throws Throwable;
     Phone addAccessories(Set<String> accessoryList, String phoneId) throws Throwable;

@@ -43,7 +43,7 @@ public class Manufacturer {
     @Length(max = 20)
     private String country;
 
-    @OneToMany(mappedBy = "manufacturer", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "manufacturer", fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<Product> products;
 }

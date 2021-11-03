@@ -108,11 +108,11 @@ public class Product extends AuditModel {
     @JoinColumn(name = "brandId")
     private Brand brand;
 
-    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<OrderDetails> orderDetails;
 
-    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<Rating> ratings;
 }

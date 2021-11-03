@@ -31,7 +31,7 @@ public class Brand {
     @Column(columnDefinition = "ntext")
     private String description;
 
-    @OneToMany(mappedBy = "brand", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "brand", fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<Product> products;
 }

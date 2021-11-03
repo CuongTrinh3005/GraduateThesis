@@ -28,7 +28,7 @@ public class Category {
     @Column(columnDefinition = "ntext")
     private String description;
 
-    @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<Product> products;
 }
