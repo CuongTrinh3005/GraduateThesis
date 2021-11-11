@@ -95,18 +95,18 @@ public class PublicController {
 	public List<Object> getAllProducts(){
 		List<Object> productList = phoneService.getAllProducts();
 		List<Object> productDTOList = new ArrayList<>();
-		Phone phone = null; Accessory accessory = null;
 		for (Object product: productList) {
-//			if(product instanceof Phone){
-//				phone = (Phone) product;
-//				PhoneDTO phoneDTO = phoneService.convertEntityToDTO(phone);
-//				productDTOList.add(phoneDTO);
-//			}
-//			else{
-//				accessory = (Accessory) product;
-//				AccessoryDTO accessoryDTO = accessoryService.convertEntityToDTO(accessory);
-//				productDTOList.add(accessoryDTO);
-//			}
+			ProductDTO dto = phoneService.convertEntityToProductDTO((Product) product);
+			productDTOList.add(dto);
+		}
+		return productDTOList;
+	}
+
+	@GetMapping("products/option={option}")
+	public List<Object> getAllProducts(@PathVariable Integer option){
+		List<Object> productList = phoneService.getAllProductsWithOrder(option);
+		List<Object> productDTOList = new ArrayList<>();
+		for (Object product: productList) {
 			ProductDTO dto = phoneService.convertEntityToProductDTO((Product) product);
 			productDTOList.add(dto);
 		}
@@ -117,18 +117,7 @@ public class PublicController {
 	public List<Object> getAllProductsByIds(@RequestBody SimilarProductListIds ids){
 		List<Object> productList = phoneService.getByListIds(ids.getSimilarProductIds());
 		List<Object> productDTOList = new ArrayList<>();
-		Phone phone = null; Accessory accessory = null;
 		for (Object product: productList) {
-//			if(product instanceof Phone){
-//				phone = (Phone) product;
-//				PhoneDTO phoneDTO = phoneService.convertEntityToDTO(phone);
-//				productDTOList.add(phoneDTO);
-//			}
-//			else{
-//				accessory = (Accessory) product;
-//				AccessoryDTO accessoryDTO = accessoryService.convertEntityToDTO(accessory);
-//				productDTOList.add(accessoryDTO);
-//			}
 			ProductDTO dto = phoneService.convertEntityToProductDTO((Product) product);
 			productDTOList.add(dto);
 		}
@@ -195,7 +184,16 @@ public class PublicController {
 	@GetMapping("products/category/{id}")
 	public List<Object> getProductByCategoryId(@PathVariable String id) throws Throwable {
 		List<Object> objectList = phoneService.getProductByCategoryId(id);
-		return convertToListDTO(objectList);
+		List<Object> dtoList = new ArrayList<>();
+		for (Object object: objectList) {
+			if(object instanceof Phone)
+				object = phoneService.convertEntityToDTO((Phone) object);
+			else
+				object = accessoryService.convertEntityToDTO((Accessory) object);
+
+			dtoList.add(object);
+		}
+		return dtoList;
 	}
 
 	@GetMapping("products/top-view")

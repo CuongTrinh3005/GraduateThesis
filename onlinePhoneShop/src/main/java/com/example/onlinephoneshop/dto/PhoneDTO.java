@@ -18,16 +18,16 @@ public class PhoneDTO extends ProductDTO{
     @NotBlank
     private String imeiNo;
     @NotNull
-    private Float ram;
+    private Float ramScore;
 
     @NotNull
-    private Float rom;
+    private Float romScore;
 
     @NotNull
-    private Integer batteryPower;
+    private Float batteryPowerScore;
 
     @NotNull
-    private Integer resolution;
+    private Integer resolutionScore;
 
     @NotNull
     private Integer maxCore;
@@ -35,10 +35,10 @@ public class PhoneDTO extends ProductDTO{
     private Float maxSpeed;
 
     @NotNull
-    private Integer refreshRate;
+    private Integer refreshRateScore;
 
-    private Integer simSupport;
-    private Integer networks;
+    private Integer simSupportScore;
+    private Integer networksScore;
 
     private Integer noFrontCam;
 

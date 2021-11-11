@@ -38,18 +38,6 @@ public class ProductDTO {
 
     private Integer label;
 
-    @DecimalMin(value = "0", message = "Discount must be not under 0%")
-    @DecimalMax(value = "1", message = "Discount must be not over 70%")
-    private Float commonCoef=0F;
-
-    @DecimalMin(value = "0", message = "Discount must be not under 0%")
-    @DecimalMax(value = "1", message = "Discount must be not over 70%")
-    private Float gamingCoef=0F;
-
-    @DecimalMin(value = "0", message = "Discount must be not under 0%")
-    @DecimalMax(value = "1", message = "Discount must be not over 70%")
-    private Float entertainCoef=0F;
-
     @NotBlank
     private String categoryName;
 

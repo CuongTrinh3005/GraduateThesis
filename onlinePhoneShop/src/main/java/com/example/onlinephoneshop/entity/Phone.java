@@ -32,16 +32,16 @@ public class Phone extends Product{
     private String imeiNo;
 
     @Column
-    private Float ram;
+    private Float ramScore;
 
     @Column
-    private Float rom;
+    private Float romScore;
 
     @Column
-    private Integer batteryPower;
+    private Float batteryPowerScore;
 
     @Column
-    private Integer resolution;
+    private Integer resolutionScore;
 
     @Column
     private Integer maxCore;
@@ -50,13 +50,13 @@ public class Phone extends Product{
     private Float maxSpeed;
 
     @Column
-    private Integer refreshRate;
+    private Integer refreshRateScore;
 
     @Column
-    private Integer simSupport;
+    private Integer simSupportScore;
 
     @Column
-    private Integer networks;
+    private Integer networksScore;
 
     @Column
     private Integer noFrontCam;

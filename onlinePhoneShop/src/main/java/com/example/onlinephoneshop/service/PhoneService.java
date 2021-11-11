@@ -15,6 +15,7 @@ import java.util.Set;
 @Service
 public interface PhoneService {
     List<Object> getAllProducts();
+    List<Object> getAllProductsWithOrder(Integer options);
     List<Object> getByListIds(List<String> ids);
     Phone savePhone(PhoneDTO phoneDTO);
     void deleteProductById(String id);

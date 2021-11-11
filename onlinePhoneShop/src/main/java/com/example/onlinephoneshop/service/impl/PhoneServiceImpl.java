@@ -4,18 +4,16 @@ import com.example.onlinephoneshop.dto.AccessoryDTO;
 import com.example.onlinephoneshop.dto.PhoneDTO;
 import com.example.onlinephoneshop.dto.ProductDTO;
 import com.example.onlinephoneshop.entity.*;
-import com.example.onlinephoneshop.enums.CustomMessages;
-import com.example.onlinephoneshop.exception.ResourceNotFoundException;
 import com.example.onlinephoneshop.repository.*;
 import com.example.onlinephoneshop.service.AccessoryService;
 import com.example.onlinephoneshop.service.PhoneService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import org.springframework.data.domain.PageRequest;
 
-import java.lang.reflect.Type;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -48,6 +46,17 @@ public class PhoneServiceImpl implements PhoneService {
     }
 
     @Override
+    public List<Object> getAllProductsWithOrder(Integer option){
+        Sort sort = null;
+        if(option == 1)
+            sort = Sort.by(Sort.Direction.DESC, "createdDate");
+        else if(option == 2)
+            sort = Sort.by(Sort.Direction.DESC, "viewCount");
+
+        return phoneRepository.findAll(sort);
+    }
+
+    @Override
     public Boolean existByImeiNo(String imeiNo) {
         return phoneSpecificRepository.existsByImeiNo(imeiNo);
     }
@@ -75,21 +84,18 @@ public class PhoneServiceImpl implements PhoneService {
         existingPhone.setViewCount(updatePhone.getViewCount());
         existingPhone.setLabel(updatePhone.getLabel());
         existingPhone.setWarranty(updatePhone.getWarranty());
-        existingPhone.setCommonCoef(updatePhone.getCommonCoef());
-        existingPhone.setGamingCoef(updatePhone.getGamingCoef());
-        existingPhone.setEntertainCoef(updatePhone.getEntertainCoef());
 
         existingPhone.setImeiNo(updatePhone.getImeiNo());
         existingPhone.setModel(updatePhone.getModel());
-        existingPhone.setRam(updatePhone.getRam());
-        existingPhone.setRom(updatePhone.getRom());
-        existingPhone.setBatteryPower(updatePhone.getBatteryPower());
-        existingPhone.setResolution(updatePhone.getResolution());
+        existingPhone.setRamScore(updatePhone.getRamScore());
+        existingPhone.setRomScore(updatePhone.getRomScore());
+        existingPhone.setBatteryPowerScore(updatePhone.getBatteryPowerScore());
+        existingPhone.setResolutionScore(updatePhone.getResolutionScore());
         existingPhone.setMaxCore(updatePhone.getMaxCore());
         existingPhone.setMaxSpeed(updatePhone.getMaxSpeed());
-        existingPhone.setRefreshRate(updatePhone.getRefreshRate());
-        existingPhone.setSimSupport(updatePhone.getSimSupport());
-        existingPhone.setNetworks(updatePhone.getNetworks());
+        existingPhone.setRefreshRateScore(updatePhone.getRefreshRateScore());
+        existingPhone.setSimSupportScore(updatePhone.getSimSupportScore());
+        existingPhone.setNetworksScore(updatePhone.getNetworksScore());
         existingPhone.setNoFrontCam(updatePhone.getNoFrontCam());
         existingPhone.setTouchScreen(updatePhone.getTouchScreen());
         existingPhone.setWifi(updatePhone.getWifi());
