@@ -41,6 +41,19 @@ public class PublicController {
 	@Autowired
 	RatingService ratingService;
 
+	@Autowired
+	ViewHistoryService viewHistoryService;
+
+	@GetMapping("check-user-viewing-exist/{userId}")
+	public Boolean checkUserViewingExisted(@PathVariable String userId){
+		return viewHistoryService.existedByUserId(userId);
+	}
+
+	@GetMapping("check-product-viewing-exist/{productId}")
+	public Boolean checkProductViewingExisted(@PathVariable String productId){
+		return viewHistoryService.existedByProductId(productId);
+	}
+
 	@GetMapping("reset-password")
 	public Boolean resetPassword(@RequestParam String username){
 		return userService.resetPassword(username.trim());
@@ -159,10 +172,6 @@ public class PublicController {
 	public List<Object> convertToListDTO(List<Object> objectList){
 		List<Object> dtoList = new ArrayList<>();
 		for (Object object: objectList) {
-//			if(object instanceof Phone)
-//				object = phoneService.convertEntityToDTO((Phone) object);
-//			else
-//				object = accessoryService.convertEntityToDTO((Accessory) object);
 			object = phoneService.convertEntityToProductDTO((Product) object);
 			dtoList.add(object);
 		}

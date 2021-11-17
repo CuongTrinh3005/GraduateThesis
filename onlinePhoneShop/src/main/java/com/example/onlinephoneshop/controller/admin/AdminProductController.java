@@ -9,6 +9,7 @@ import com.example.onlinephoneshop.exception.CustomException;
 import com.example.onlinephoneshop.payload.request.AccessoryListId;
 import com.example.onlinephoneshop.service.AccessoryService;
 import com.example.onlinephoneshop.service.PhoneService;
+import com.example.onlinephoneshop.service.ViewHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +33,9 @@ public class AdminProductController {
     @Autowired
     AccessoryService accessoryService;
 
+    @Autowired
+    ViewHistoryService viewHistoryService;
+
     @PostMapping("phones")
     public ResponseEntity<?> savePhone(@Valid @RequestBody PhoneDTO phone){
         phoneService.savePhone(phone);
@@ -52,14 +56,16 @@ public class AdminProductController {
         Object product = productOpt.get();
         if(product instanceof Phone){
             phone = (Phone) product;
-            if(phone.getOrderDetails().size()==0 && phone.getRatings().size()==0)
+            if(phone.getOrderDetails().size()==0 && phone.getRatings().size()==0
+                    && (!viewHistoryService.existedByProductId(phone.getProductId())))
                 phoneService.deleteProductById(productId);
             else
                 throw new CustomException(CustomMessages.NOT_DELETE_PRODUCT.getDescription());
         }
         else{
             accessory = (Accessory) product;
-            if(accessory.getOrderDetails().size()==0 && accessory.getRatings().size()==0)
+            if(accessory.getOrderDetails().size()==0 && accessory.getRatings().size()==0
+                    && (!viewHistoryService.existedByProductId(accessory.getProductId())))
                 phoneService.deleteProductById(productId);
             else
                 throw new CustomException(CustomMessages.NOT_DELETE_PRODUCT.getDescription());
@@ -90,7 +96,8 @@ public class AdminProductController {
         Optional<Accessory> accessoryOtp = accessoryService.getAccessoryById(accessoryId);
         Accessory accessory = accessoryOtp.get();
 
-        if(accessory.getOrderDetails().size()==0 && accessory.getRatings().size()==0)
+        if(accessory.getOrderDetails().size()==0 && accessory.getRatings().size()==0
+                && (!viewHistoryService.existedByProductId(accessory.getProductId())))
             accessoryService.deleteAccessoryById(accessoryId);
         else
             throw new CustomException(CustomMessages.NOT_DELETE_PRODUCT.getDescription());

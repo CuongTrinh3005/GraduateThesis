@@ -172,7 +172,7 @@ public class UserServiceImpl implements UserService {
         Boolean isUserExist = userRepository.existsByUsername(username);
         if(!isUserExist)	throw new ResourceNotFoundException(CustomMessages.USER_NOT_FOUND.getDescription());
 
-        User user = userRepository.getById(username);
+        User user = userRepository.findByUsername(username).get();
         if(!encoder.matches(oldPassword, user.getPassword())){
             throw new CustomException(CustomMessages.INCORRECT_CURRENT_PASSWORD.getDescription());
         }
@@ -200,7 +200,7 @@ public class UserServiceImpl implements UserService {
 
             User user = findByUserName(username).get();
 
-            String contentConfirmation = String.format("Your password is resetted to %s. "
+            String contentConfirmation = String.format("Your password is reset to %s. "
                     + "Keep it secret for safety!!!", newPassword);
 
             String to = user.getEmail();

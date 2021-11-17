@@ -6,6 +6,7 @@ import com.example.onlinephoneshop.enums.CustomMessages;
 import com.example.onlinephoneshop.exception.CustomException;
 import com.example.onlinephoneshop.exception.ResourceNotFoundException;
 import com.example.onlinephoneshop.service.UserService;
+import com.example.onlinephoneshop.service.ViewHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,9 @@ import java.util.stream.Collectors;
 public class AdminUserController {
     @Autowired
     UserService userService;
+
+    @Autowired
+    ViewHistoryService viewHistoryService;
 
     @GetMapping
     public List<UserDTO> getAllUsers(){
@@ -47,7 +51,8 @@ public class AdminUserController {
             throw new ResourceNotFoundException(CustomMessages.USER_NOT_FOUND.getDescription());
 
         User user = userOptional.get();
-        if (user.getOrders().size() == 0 && user.getRatings().size() == 0)
+        if (user.getOrders().size() == 0 && user.getRatings().size() == 0
+                && (!viewHistoryService.existedByUserId(userId)))
             userService.delete(user);
         else
             throw new CustomException(CustomMessages.NOT_DELETE_USER.getDescription());

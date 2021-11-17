@@ -85,4 +85,16 @@ public class ViewHistoryServiceImpl implements ViewHistoryService{
 		// TODO Auto-generated method stub
 		return viewHistoryRepository.existsByViewHistoryId(historyId);
 	}
+
+	@Override
+	public Boolean existedByProductId(String productId) {
+		List<ViewHistory> histories = viewHistoryRepository.findByViewHistoryIdProductId(productId);
+		return (histories.size() > 0);
+	}
+
+	@Override
+	public Boolean existedByUserId(String userId) {
+		List<ViewHistory> histories = viewHistoryRepository.findByViewHistoryIdUserId(userId);
+		return (histories.size() > 0);
+	}
 }

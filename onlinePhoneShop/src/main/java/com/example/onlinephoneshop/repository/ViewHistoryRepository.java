@@ -11,6 +11,7 @@ import com.example.onlinephoneshop.entity.ViewHistory.ViewHistoryId;
 @Repository
 public interface ViewHistoryRepository extends JpaRepository<ViewHistory, ViewHistoryId> {
 	List<ViewHistory> findByViewHistoryIdUserId(String userId);
+	List<ViewHistory> findByViewHistoryIdProductId(String productId);
 	List<ViewHistory> findAllByOrderByUpdatedDateDesc();
 	Boolean existsByViewHistoryId(ViewHistoryId viewHistoryId);
 }

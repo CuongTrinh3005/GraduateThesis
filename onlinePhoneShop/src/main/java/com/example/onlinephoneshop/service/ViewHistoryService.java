@@ -12,5 +12,7 @@ public interface ViewHistoryService {
 	ViewHistory saveViewHistory(ViewHistory historyViewing);
 	ViewHistory increaseViewCountInHistory(ViewHistoryId historyViewingId);
 	void deleteUserViewingHistory(String userId);
-	Boolean isUserViewingHistoryExisted(ViewHistoryId historyId); 
+	Boolean isUserViewingHistoryExisted(ViewHistoryId historyId);
+	Boolean existedByProductId(String productId);
+	Boolean existedByUserId(String userId);
 }
