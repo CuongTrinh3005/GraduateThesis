@@ -117,13 +117,7 @@ public class PublicController {
 
 	@GetMapping("products/option={option}")
 	public List<Object> getAllProducts(@PathVariable Integer option){
-		List<Object> productList = phoneService.getAllProductsWithOrder(option);
-		List<Object> productDTOList = new ArrayList<>();
-		for (Object product: productList) {
-			ProductDTO dto = phoneService.convertEntityToProductDTO((Product) product);
-			productDTOList.add(dto);
-		}
-		return productDTOList;
+		return phoneService.getAllProductsWithOrder(option);
 	}
 
 	@PostMapping("products/list-ids")
@@ -180,53 +174,37 @@ public class PublicController {
 
 	@GetMapping("products/search")
 	public List<Object> getProductByName(@RequestParam String productName) throws Throwable {
-		List<Object> objectList = phoneService.getProductByName(productName);
-		return convertToListDTO(objectList);
+		return phoneService.getProductByName(productName);
 	}
 
 	@GetMapping("products/embedded-search")
 	public List<Object> getProductByNameIgnoreCaseContaining(@RequestParam String productName) throws Throwable {
-		List<Object> objectList = phoneService.getProductByNameIgnoreCaseContaining(productName);
-		return convertToListDTO(objectList);
+		return phoneService.getProductByNameIgnoreCaseContaining(productName);
 	}
 
 	@GetMapping("products/category/{id}")
 	public List<Object> getProductByCategoryId(@PathVariable String id) throws Throwable {
-		List<Object> objectList = phoneService.getProductByCategoryId(id);
-		List<Object> dtoList = new ArrayList<>();
-		for (Object object: objectList) {
-			if(object instanceof Phone)
-				object = phoneService.convertEntityToDTO((Phone) object);
-			else
-				object = accessoryService.convertEntityToDTO((Accessory) object);
-
-			dtoList.add(object);
-		}
-		return dtoList;
+		return phoneService.getProductByCategoryId(id);
 	}
 
 	@GetMapping("products/top-view")
 	public List<Object> getProductTopView() throws Throwable {
-		List<Object> objectList = phoneService.getTop10MostView();
-		return convertToListDTO(objectList);
+		return phoneService.getTop10MostView();
 	}
 
 	@GetMapping("products/top-discount")
 	public List<Object> getProductTopDiscount() throws Throwable {
-		List<Object> objectList = phoneService.getTop10MostDiscount();
-		return convertToListDTO(objectList);
+		return phoneService.getTop10MostDiscount();
 	}
 
 	@GetMapping("products/top-newest")
 	public List<Object> getProductNewest() throws Throwable {
-		List<Object> objectList = phoneService.getTop10Newest();
-		return convertToListDTO(objectList);
+		return phoneService.getTop10Newest();
 	}
 
 	@GetMapping("products/best-seller/limit/{num}")
 	public List<Object> getProductBestSeller(@PathVariable Integer num) throws Throwable {
-		List<Object> objectList = phoneService.getTop10BestSeller(0, num);
-		return convertToListDTO(objectList);
+		return phoneService.getTop10BestSeller(0, num);
 	}
 
 	@GetMapping("payments")
