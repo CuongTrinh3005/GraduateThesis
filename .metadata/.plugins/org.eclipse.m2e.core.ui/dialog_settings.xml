@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="D:\Reference project\Paypal Integration\spring-boot-paypal-example"/>
 			<item value="D:\PhoneShopBE"/>
 		</list>
 		<list key="projectNameTemplate">

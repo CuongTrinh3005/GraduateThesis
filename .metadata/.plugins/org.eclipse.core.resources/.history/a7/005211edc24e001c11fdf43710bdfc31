@@ -1,0 +1,5 @@
+server.port: 9090
+
+paypal.mode=sandbox
+paypal.client.id=AUQSQYEZY2Gd8mkaemKG6nCydkPZrxqVVbz9ywESYkNWDzNkWaDaHVJ5raA2R75DSSSvYljMN4tefBRL
+paypal.client.secret=EObDWjmpb6tdAqb02uKBMetoOotdVj2qoikqaj675SO9zZBHJt1ia7lHEPy9GXrJJ1Lc9haFj49dbSwW
